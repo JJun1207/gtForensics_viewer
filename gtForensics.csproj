@@ -56,10 +56,4 @@
     <Resource Include="Resources\Logo.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="map_view.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

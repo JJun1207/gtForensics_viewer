@@ -39,14 +39,16 @@ namespace gtForensics
             menuDataView.Add(new SubItem("Youtube", new UserControlDataView(this, "parse_my_activity_youtube")));
             menuDataView.Add(new SubItem("Video Search", new UserControlDataView(this, "parse_my_activity_video_search")));
             menuDataView.Add(new SubItem("Voice Audio", new UserControlDataView(this, "parse_my_activity_voice_audio")));
+            menuDataView.Add(new SubItem("Map", new UserControlAnalysis_Map(this)));
+
             var itemDataView = new ItemMenu("Data View", menuDataView, PackIconKind.Database);
 
-            var menuAnalysis = new List<SubItem>();
-            menuAnalysis.Add(new SubItem("Map", new UserControlAnalysis_Map(this)));
-            var ItemAnalysis = new ItemMenu("Analysis", menuAnalysis, PackIconKind.Apps);
+            //var menuAnalysis = new List<SubItem>();
+            //menuAnalysis.Add(new SubItem("Map", new UserControlAnalysis_Map(this)));
+            //var ItemAnalysis = new ItemMenu("Analysis", menuAnalysis, PackIconKind.Apps);
 
             Menu.Children.Add(new UserControlMenuItem(itemDataView, this));
-            Menu.Children.Add(new UserControlMenuItem(ItemAnalysis, this));
+            //Menu.Children.Add(new UserControlMenuItem(ItemAnalysis, this));
 
             sqlite_file_name = dbpath;
             utc_time = _utc;
