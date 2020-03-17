@@ -1,0 +1,62 @@
+﻿<Window x:Name="Start" x:Class="gtForensics.StartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:gtForensics"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="gtForensics" Height="500" Width="600" WindowStyle="SingleBorderWindow" SizeToContent="Manual" WindowStartupLocation="CenterScreen" Foreground="White" ResizeMode="NoResize">
+    <Grid Background="{DynamicResource MaterialDesignBackground}" Height="500" Width="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="LogoGrid" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Background="{DynamicResource MaterialDesignDarkBackground}">
+            <Image x:Name="Start_Logo" Source="/Resources/Logo.png"/>
+        </Grid>
+        <Grid x:Name="InputGrid" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="510"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                <Label x:Name="DbPathLabel" Content="Input File" Height="30" Width="70" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" FontSize="13" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="dbpath" materialDesign:HintAssist.Hint="Database File Path" Height="30" Width="345" Background="White" TextAlignment="Left" Foreground="Black" BorderBrush="Black" CaretBrush="Black" SelectionBrush="Black" IsReadOnly="True" Margin="0 0 15 0"/>
+                <Button x:Name="Open" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="MaterialDesignFloatingActionMiniLightButton" Width="70" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand" Click="Open_Click" Background="{DynamicResource MaterialDesignDarkBackground}" >
+                    <TextBlock Text="Open" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center" Foreground="#DDFFFFFF"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                <Label x:Name="APIKeyLabel" Content="API Key" Height="30" Width="70" VerticalAlignment="Center" FontWeight="Bold" FontSize="13" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="apikey" materialDesign:HintAssist.Hint="Bing Map API Key" Height="30" Width="340" Background="White" TextAlignment="Left" Foreground="Black" BorderBrush="Black" CaretBrush="Black" SelectionBrush="Black"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                <Label x:Name="TimezoneLabel" Content="Timezone" Height="30" Width="70" VerticalAlignment="Center" FontWeight="Bold" FontSize="13" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <ComboBox Name="TimezoneList" Height="30" Width="130" Style="{StaticResource MaterialDesignComboBox}" IsReadOnly="True" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                <Label Width="430" Visibility="Hidden"></Label>
+                <Button x:Name="Next" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="MaterialDesignFloatingActionMiniLightButton" Width="70" Height="30" VerticalAlignment="Center" Cursor="Hand" Click="Next_Click" Foreground="#DDFFFFFF" Background="{DynamicResource MaterialDesignDarkBackground}">
+                    <TextBlock Text="Next" FontSize="13" FontWeight="Bold" VerticalAlignment="Center" TextAlignment="Center"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
+
