@@ -39,6 +39,7 @@ namespace gtForensics
             menuDataView.Add(new SubItem("Youtube", new UserControlDataView(this, "parse_my_activity_youtube")));
             menuDataView.Add(new SubItem("Video Search", new UserControlDataView(this, "parse_my_activity_video_search")));
             menuDataView.Add(new SubItem("Voice Audio", new UserControlDataView(this, "parse_my_activity_voice_audio")));
+            menuDataView.Add(new SubItem("Semantic Location History", new UserControlDataView(this, "parse_semantic_location_history")));
             menuDataView.Add(new SubItem("Map", new UserControlAnalysis_Map(this)));
 
             var itemDataView = new ItemMenu("Data View", menuDataView, PackIconKind.Database);
@@ -134,6 +135,31 @@ namespace gtForensics
                     }
                 }
             }
+            else if(t_name == "parse_semantic_location_history")
+            {
+                if (_min == "00")
+                {
+                    if (option == 0)
+                    {
+                        result = String.Format("datetime(datetime(stimestamp, 'unixepoch'), '{0} hours') as 'STime', datetime(datetime(etimestamp, 'unixepoch'), '{0} hours') as 'ETime'", _hours);
+                    }
+                    else
+                    {
+                        result = String.Format("datetime(datetime(stimestamp, 'unixepoch'), '{0} hours') as 'Start Time(UTC{1})', datetime(datetime(etimestamp, 'unixepoch'), '{0} hours') as 'End Time(UTC{1})'", _hours, utc_time);
+                    }
+                }
+                else
+                {
+                    if (option == 0)
+                    {
+                        result = String.Format("datetime(datetime(stimestamp, 'unixepoch'), '{0} hours', '{1} minutes') as 'STime', datetime(datetime(etimestamp, 'unixepoch'), '{0} hours', '{1} minutes') as 'ETime", _hours, _min);
+                    }
+                    else
+                    {
+                        result = String.Format("datetime(datetime(stimestamp, 'unixepoch'), '{0} hours', '{1} minutes') as 'Start Time(UTC{2})', datetime(datetime(etimestamp, 'unixepoch'), '{0} hours', '{1} minutes') as 'End Time(UTC{2})'", _hours, _min, utc_time);
+                    }
+                }
+            }
             else
             {
                 if (_min == "00")
@@ -204,6 +230,10 @@ namespace gtForensics
             else if (t_name == "parse_my_activity_voice_audio")
             {
                 query = String.Format("SELECT {0}, service as Service, type as Type, keyword as Keyword, keyword_url as 'Keyword URL', filepath as 'File Path', used_device as 'Used Device' FROM {1};", Datetime_Builder(t_name, 1), t_name);
+            }
+            else if (t_name == "parse_semantic_location_history")
+            {
+                query = String.Format("SELECT type as Type, {0}, slatitude as 'Start Latitude', slongitude as 'Start Longitude', elatitude as 'End Latitude', elongitude as 'End Longitude', place_name as 'Place Name', place_addr as 'Place Address',duration as Duration, distance as Distance, transportation as Transportation, confidence as Confidence, device_tag as 'Device Tag' FROM {1};", Datetime_Builder(t_name, 1), t_name);
             }
 
             return query;
