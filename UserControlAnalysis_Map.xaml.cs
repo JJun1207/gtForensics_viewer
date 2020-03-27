@@ -60,6 +60,8 @@ namespace gtForensics
                 Pushpin pin = new Pushpin();
                 pin.Location = new Location(Double.Parse(row[1].ToString()) / 10000000, Double.Parse(row[2].ToString()) / 10000000);
                 map_view.Children.Add(pin);
+
+                
             }
         }
 
